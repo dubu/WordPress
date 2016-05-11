@@ -19,3 +19,7 @@ spring sercurity :
 user : passwd 로그에서 확인
 'Using default security password: Using default security password: 7142e032-b6a4-4a30-b7a6-XXXXXXX
 또는 dubu
+
+
+jpa 사용전
+scheme 재정의 fk 등
