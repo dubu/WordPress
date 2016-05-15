@@ -1,18 +1,21 @@
 package com.dubu.wordpress.domain;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.sql.Timestamp;
+import java.io.Serializable;
 
 /**
  * User: kingkingdubu
- * Date: 2016-05-12
- * Time: 오전 3:03
+ * Date: 2016-05-15
+ * Time: 오후 5:10
  */
 @Entity
 @javax.persistence.Table(name = "wp_posts", schema = "wp", catalog = "")
-public class WpPostsEntity {
+public class WpPostsEntity implements Serializable {
     private Long id;
 
     @Id
@@ -25,27 +28,28 @@ public class WpPostsEntity {
         this.id = id;
     }
 
-    private Timestamp postDate;
+    private DateTime postDate;
 
     @Basic
     @javax.persistence.Column(name = "post_date")
-    public Timestamp getPostDate() {
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getPostDate() {
         return postDate;
     }
 
-    public void setPostDate(Timestamp postDate) {
+    public void setPostDate(DateTime postDate) {
         this.postDate = postDate;
     }
 
-    private Timestamp postDateGmt;
+    private DateTime postDateGmt;
 
     @Basic
     @javax.persistence.Column(name = "post_date_gmt")
-    public Timestamp getPostDateGmt() {
+    public DateTime getPostDateGmt() {
         return postDateGmt;
     }
 
-    public void setPostDateGmt(Timestamp postDateGmt) {
+    public void setPostDateGmt(DateTime postDateGmt) {
         this.postDateGmt = postDateGmt;
     }
 
@@ -160,7 +164,7 @@ public class WpPostsEntity {
     private String pinged;
 
     @Basic
-    @javax.persistence.Column(name = "pinged")
+    @javax.persistence.Column(name = "pinged", columnDefinition = "text")
     public String getPinged() {
         return pinged;
     }
@@ -169,27 +173,29 @@ public class WpPostsEntity {
         this.pinged = pinged;
     }
 
-    private Timestamp postModified;
+    private DateTime postModified;
 
     @Basic
     @javax.persistence.Column(name = "post_modified")
-    public Timestamp getPostModified() {
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getPostModified() {
         return postModified;
     }
 
-    public void setPostModified(Timestamp postModified) {
+    public void setPostModified(DateTime postModified) {
         this.postModified = postModified;
     }
 
-    private Timestamp postModifiedGmt;
+    private DateTime postModifiedGmt;
 
     @Basic
     @javax.persistence.Column(name = "post_modified_gmt")
-    public Timestamp getPostModifiedGmt() {
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    public DateTime getPostModifiedGmt() {
         return postModifiedGmt;
     }
 
-    public void setPostModifiedGmt(Timestamp postModifiedGmt) {
+    public void setPostModifiedGmt(DateTime postModifiedGmt) {
         this.postModifiedGmt = postModifiedGmt;
     }
 
