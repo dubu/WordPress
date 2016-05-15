@@ -40,6 +40,7 @@ public class DefaultController {
 
 
         model.put("nickname","dubuAA");
+        model.put("posts" , postRepository.findByPostType("post"));
 
         return  "/twentyeleven/index";
     }

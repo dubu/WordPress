@@ -45,14 +45,17 @@
 		</div><!-- .entry-summary -->
 		<!--<?php else : ?>-->
 
-			<div class="entry-content" ng-repeat="post in posts | filter:query | orderBy:orderProp"  >
 
-				{{post.postContent}}
+		<!--<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) ); ?>-->
+		<!--<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'twentyeleven' ) . '</span>', 'after' => '</div>' ) ); ?>-->
 
-				<!--<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) ); ?>-->
-				<!--<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'twentyeleven' ) . '</span>', 'after' => '</div>' ) ); ?>-->
-			</div><!-- .entry-content -->
+		<!--<div class="entry-content" ng-repeat="post in posts | filter:query | orderBy:orderProp">-->
+			<!--{{post.postContent}}-->
+		<!--</div>&lt;!&ndash; .entry-content &ndash;&gt;-->
 
+		<div class="entry-content" th:each="post : ${posts}" th:text="${post.postContent}">
+
+		</div>
 
 		<!--<?php endif; ?>-->
 

@@ -105,7 +105,7 @@
         $http.get("/api/wpPostsEntities/search/findByPostType?post_type=post").success(function(data) {
 
             if (data) {
-                $scope.posts = data._embedded.wpPostsEntities;
+//                $scope.posts = data._embedded.wpPostsEntities;
                 self.authenticated = true;
             } else {
                 self.user = "N/A";
