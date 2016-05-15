@@ -45,6 +45,7 @@ public class WpPostsEntity implements Serializable {
 
     @Basic
     @javax.persistence.Column(name = "post_date_gmt")
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime getPostDateGmt() {
         return postDateGmt;
     }

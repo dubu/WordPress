@@ -15,7 +15,7 @@
     header
 </header>
 
-<body class="single single-post postid-12 single-format-image single-author singular two-column right-sidebar">
+<body class="single single-post postid-12 single-format-image single-author singular two-column right-sidebar" ng-app="app" ng-controller="home as home">
 <div id="page" class="hfeed">
 
     <header th:replace="twentyeleven/header-brand :: branding">
@@ -30,6 +30,9 @@
                 <!--<?php if ( have_posts() ) : ?>-->
 
 
+                <article th:replace="twentyeleven/content :: content">
+
+                </article>
 
                 <!--<?php twentyeleven_content_nav( 'nav-above' ); ?>-->
 
@@ -44,7 +47,7 @@
 
                 <!--<?php else : ?>-->
 
-                <article id="post-0" class="post no-results not-found">
+                <article id="post-0" class="post no-results not-found" th:if="false">
                     <header class="entry-header">
                         <h1 class="entry-title" th:text="'Nothing Found'">
                             <!--<?php _e( 'Nothing Found', 'twentyeleven' ); ?>-->
@@ -77,5 +80,51 @@
 
 <script type='text/javascript' src='http://localhost/wp-includes/js/comment-reply.min.js?ver=4.6-alpha-37416'></script>
 <script type='text/javascript' src='http://localhost/wp-includes/js/wp-embed.min.js?ver=4.6-alpha-37416'></script>
+
+<script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
+<script type="text/javascript">
+    angular
+            .module("app", [])
+            .config(
+                    function($httpProvider) {
+                        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+                    }).controller("home", function($scope, $http, $location) {
+        var self = this;
+//         $scope.posts = [
+//            {'postContent': 'Nexus S',
+//                'snippet': 'Fast just got faster with Nexus S.',
+//                'age': 1},
+//            {'postContent': 'Motorola XOOM™ with Wi-Fi',
+//                'snippet': 'The Next, Next Generation tablet.',
+//                'age': 2},
+//            {'postContent': 'MOTOROLA XOOM™',
+//                'snippet': 'The Next, Next Generation tablet.',
+//                'age': 3}
+//        ];
+
+        $http.get("/api/wpPostsEntities/search/findByPostType?post_type=post").success(function(data) {
+
+            if (data) {
+                $scope.posts = data._embedded.wpPostsEntities;
+                self.authenticated = true;
+            } else {
+                self.user = "N/A";
+                self.authenticated = false;
+            }
+        }).error(function() {
+            self.user = "N/A";
+            self.authenticated = false;
+        });
+        self.logout = function() {
+            $http.post('logout', {}).success(function() {
+                self.authenticated = false;
+                $location.path("/");
+            }).error(function(data) {
+                console.log("Logout failed")
+                self.authenticated = false;
+            });
+        };
+    });
+</script>
 </body>
 </html>
