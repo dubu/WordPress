@@ -1,6 +1,7 @@
 package com.dubu.wordpress.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User: kingkingdubu
@@ -9,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "wp_term_taxonomy", schema = "wp", catalog = "")
-public class WpTermTaxonomyEntity {
+public class WpTermTaxonomyEntity implements Serializable {
     private Long termTaxonomyId;
     private Long termId;
     private String taxonomy;

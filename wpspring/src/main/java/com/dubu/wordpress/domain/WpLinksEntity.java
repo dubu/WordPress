@@ -4,6 +4,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User: kingkingdubu
@@ -12,7 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "wp_links", schema = "wp", catalog = "")
-public class WpLinksEntity {
+public class WpLinksEntity implements Serializable {
     private Long linkId;
     private String linkUrl;
     private String linkName;

@@ -1,6 +1,7 @@
 package com.dubu.wordpress.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User: kingkingdubu

@@ -1,6 +1,7 @@
 package com.dubu.wordpress.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User: kingkingdubu
@@ -9,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "wp_commentmeta", schema = "wp", catalog = "")
-public class WpCommentmetaEntity {
+public class WpCommentmetaEntity implements Serializable {
     private Long metaId;
     private Long commentId;
     private String metaKey;

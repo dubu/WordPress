@@ -1,6 +1,7 @@
 package com.dubu.wordpress.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User: kingkingdubu
@@ -9,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "wp_options", schema = "wp", catalog = "")
-public class WpOptionsEntity {
+public class WpOptionsEntity implements Serializable {
     private Long optionId;
     private String optionName;
     private String optionValue;

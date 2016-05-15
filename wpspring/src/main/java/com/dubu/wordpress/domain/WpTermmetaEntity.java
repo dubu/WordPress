@@ -1,6 +1,7 @@
 package com.dubu.wordpress.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User: kingkingdubu
@@ -9,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "wp_termmeta", schema = "wp", catalog = "")
-public class WpTermmetaEntity {
+public class WpTermmetaEntity implements Serializable {
     private Long metaId;
     private Long termId;
     private String metaKey;

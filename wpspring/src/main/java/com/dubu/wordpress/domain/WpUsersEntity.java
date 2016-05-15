@@ -4,6 +4,7 @@ import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * User: kingkingdubu
@@ -12,7 +13,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "wp_users", schema = "wp", catalog = "")
-public class WpUsersEntity {
+public class WpUsersEntity implements Serializable {
     private Long id;
     private String userLogin;
     private String userPass;

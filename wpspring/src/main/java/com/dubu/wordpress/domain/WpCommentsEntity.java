@@ -6,6 +6,7 @@ import org.joda.time.DateTime;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * User: kingkingdubu
@@ -14,7 +15,7 @@ import javax.persistence.Id;
  */
 @Entity
 @javax.persistence.Table(name = "wp_comments", schema = "wp", catalog = "")
-public class WpCommentsEntity {
+public class WpCommentsEntity implements Serializable {
     private Long commentId;
 
     @Id
