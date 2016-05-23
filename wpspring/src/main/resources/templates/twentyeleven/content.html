@@ -7,13 +7,12 @@
  <!--* @since Twenty Eleven 1.0-->
  <!--*/-->
 <!--?>-->
-
-
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <body>
 	<!--<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> >-->
-	<article id="post-"  th:fragment="content"  xmlns:th="http://www.thymeleaf.org">
+	<!--/*@thymesVar id="post" type="com.dubu.wordpress.domain.WpPostsEntity"*/-->
+	<article th:each="post : ${posts}" th:id="'post-'+${post.id}" th:fragment="content"  >
 		<header class="entry-header">
 			<!--<?php if ( is_sticky() ) : ?>-->
 				<!--<hgroup>-->
@@ -21,14 +20,24 @@
 					<!--<h3 class="entry-format"><?php _e( 'Featured', 'twentyeleven' ); ?></h3>-->
 				<!--</hgroup>-->
 			<!--<?php else : ?>-->
-			<h1 class="entry-title"><a href="php the_permalink(); >" rel="bookmark">
+			<h1 class="entry-title"><a th:href="'/'+${post.id}" rel="bookmark" th:text="${post.postTitle}" th:if="true">
 				<!--<?php the_title(); ?>-->
 			</a></h1>
 			<!--<?php endif; ?>-->
 
 			<!--<?php if ( 'post' == get_post_type() ) : ?>-->
-			<div class="entry-meta">
+			<div class="entry-meta" th:if="${post.postType == 'post'}">
 				<!--<?php twentyeleven_posted_on(); ?>-->
+
+				<span class="sep">Posted on </span>
+				<a href="'/'+${post.id}"  th:title="${post.postTitle}" rel="bookmark">
+				<time class="entry-date"  th:text="${#dates.format(post.postDate, 'MM dd, yyyy')}"  ></time>
+				</a>
+				<span class="by-author"> <span class="sep"> by </span>
+					<span class="author vcard">
+					<a class="url fn n"  th:href="'/'+${post.id}" th:title="${post.postTitle}" rel="author" th:text="'View all posts by'+${post.postAuthor}" ></a>
+					</span>
+				</span>
 			</div><!-- .entry-meta -->
 			<!--<?php endif; ?>-->
 
@@ -53,7 +62,7 @@
 			<!--{{post.postContent}}-->
 		<!--</div>&lt;!&ndash; .entry-content &ndash;&gt;-->
 
-		<div class="entry-content" th:each="post : ${posts}" th:text="${post.postContent}">
+		<div class="entry-content"  th:text="${post.postContent}">
 
 		</div>
 
