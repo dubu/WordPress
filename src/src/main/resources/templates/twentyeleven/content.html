@@ -1,0 +1,44 @@
+<!--<?php-->
+<!--/**-->
+ <!--* Template for displaying content-->
+ <!--*-->
+ <!--* @package WordPress-->
+ <!--* @subpackage Twenty_Eleven-->
+ <!--* @since Twenty Eleven 1.0-->
+ <!--*/-->
+<!--?>-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<!--/*@thymesVar id="post" type="com.dubu.wordpress.domain.WpPostsEntity"*/-->
+<th:block th:each="post : ${posts}"   th:fragment="content" >
+	<article th:id="'post-'+${post.id}" class="post-4 post type-post status-publish format-standard hentry category-uncategorized">
+		<header class="entry-header">
+			<h1 class="entry-title"><a th:href="'/?p='+${post.id}" rel="bookmark" th:text="${post.postTitle}">...</a></h1>
+
+			<div class="entry-meta">
+				<span class="sep">Posted on </span><a th:href="'/?p='+${post.id}" title="3:16 pm" rel="bookmark"><time class="entry-date" th:text="${#dates.format(post.postDate, 'MM dd, yyyy')}"> </time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://localhost/?author=1" title="View all posts by dubu" rel="author">dubu</a></span></span>			</div><!-- .entry-meta -->
+
+			<div class="comments-link">
+				<a href="http://localhost/?p=4#respond"><span class="leave-reply">Reply</span></a>			</div>
+		</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			<p th:text="${post.getPostContent()}">...</p>
+		</div><!-- .entry-content -->
+
+		<footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://localhost/?cat=1" rel="category">Uncategorized</a>			</span>
+
+			<span class="sep"> | </span>
+			<span class="comments-link" ><a href="http://localhost/?p=4#respond"><span class="leave-reply">Leave a reply</span></a></span>
+
+			<span class="edit-link"><a class="post-edit-link" href="http://localhost/wp-admin/post.php?post=4&amp;action=edit" th:if="false">Edit</a></span>		</footer><!-- .entry-meta -->
+	</article><!-- #post-4 -->
+
+</th:block>
+
+</body>
+</html>
