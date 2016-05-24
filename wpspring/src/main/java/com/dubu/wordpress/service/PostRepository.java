@@ -15,5 +15,6 @@ import java.util.List;
  */
 public interface PostRepository extends Repository<WpPostsEntity, Long>, JpaRepository<WpPostsEntity, Long>,JpaSpecificationExecutor<WpPostsEntity> {
 
-    List<WpPostsEntity> findByPostType(@Param("post_type") String postType);
+    List<WpPostsEntity> findByPostStatusAndPostTypeOrderByIdDesc(@Param("post_status") String postStatus ,@Param("post_type") String postType );
+
 }

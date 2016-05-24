@@ -1,13 +1,10 @@
 package com.dubu.wordpress;
 
-import com.dubu.wordpress.domain.WpPostsEntity;
 import com.dubu.wordpress.service.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -40,7 +37,7 @@ public class DefaultController {
 
 
         model.put("nickname","dubuAA");
-        model.put("posts" , postRepository.findByPostType("post"));
+        model.put("posts" , postRepository.findByPostStatusAndPostTypeOrderByIdDesc("publish","post"));
 
         return  "/twentyeleven/index";
     }
