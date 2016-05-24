@@ -7,99 +7,38 @@
  <!--* @since Twenty Eleven 1.0-->
  <!--*/-->
 <!--?>-->
-
-
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <body>
-	<!--<article id="post-<?php the_ID(); ?>" <?php post_class(); ?> >-->
-	<article id="post-"  th:fragment="content"  xmlns:th="http://www.thymeleaf.org">
+
+<!--/*@thymesVar id="post" type="com.dubu.wordpress.domain.WpPostsEntity"*/-->
+<th:block th:each="post : ${posts}"   th:fragment="content" >
+	<article th:id="'post-'+${post.id}" class="post-4 post type-post status-publish format-standard hentry category-uncategorized">
 		<header class="entry-header">
-			<!--<?php if ( is_sticky() ) : ?>-->
-				<!--<hgroup>-->
-					<!--<h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>-->
-					<!--<h3 class="entry-format"><?php _e( 'Featured', 'twentyeleven' ); ?></h3>-->
-				<!--</hgroup>-->
-			<!--<?php else : ?>-->
-			<h1 class="entry-title"><a href="php the_permalink(); >" rel="bookmark">
-				<!--<?php the_title(); ?>-->
-			</a></h1>
-			<!--<?php endif; ?>-->
+			<h1 class="entry-title"><a th:href="'/?p='+${post.id}" rel="bookmark" th:text="${post.postTitle}">...</a></h1>
 
-			<!--<?php if ( 'post' == get_post_type() ) : ?>-->
 			<div class="entry-meta">
-				<!--<?php twentyeleven_posted_on(); ?>-->
-			</div><!-- .entry-meta -->
-			<!--<?php endif; ?>-->
+				<span class="sep">Posted on </span><a th:href="'/?p='+${post.id}" title="3:16 pm" rel="bookmark"><time class="entry-date" th:text="${#dates.format(post.postDate, 'MM dd, yyyy')}"> </time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://localhost/?author=1" title="View all posts by dubu" rel="author">dubu</a></span></span>			</div><!-- .entry-meta -->
 
-			<!--<?php if ( comments_open() && ! post_password_required() ) : ?>-->
 			<div class="comments-link">
-				<!--<?php comments_popup_link( '<span class="leave-reply">' . __( 'Reply', 'twentyeleven' ) . '</span>', _x( '1', 'comments number', 'twentyeleven' ), _x( '%', 'comments number', 'twentyeleven' ) ); ?>-->
-			</div>
-			<!--<?php endif; ?>-->
+				<a href="http://localhost/?p=4#respond"><span class="leave-reply">Reply</span></a>			</div>
 		</header><!-- .entry-header -->
 
-		<!--<?php if ( is_search() ) : // Only display Excerpts for Search ?>-->
-		<div class="entry-summary">
-			<!--<?php the_excerpt(); ?>-->
-		</div><!-- .entry-summary -->
-		<!--<?php else : ?>-->
-
-
-		<!--<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyeleven' ) ); ?>-->
-		<!--<?php wp_link_pages( array( 'before' => '<div class="page-link"><span>' . __( 'Pages:', 'twentyeleven' ) . '</span>', 'after' => '</div>' ) ); ?>-->
-
-		<!--<div class="entry-content" ng-repeat="post in posts | filter:query | orderBy:orderProp">-->
-			<!--{{post.postContent}}-->
-		<!--</div>&lt;!&ndash; .entry-content &ndash;&gt;-->
-
-		<div class="entry-content" th:each="post : ${posts}" th:text="${post.postContent}">
-
-		</div>
-
-		<!--<?php endif; ?>-->
+		<div class="entry-content">
+			<p th:text="${post.getPostContent()}">...</p>
+		</div><!-- .entry-content -->
 
 		<footer class="entry-meta">
-			<!--<?php $show_sep = false; ?>-->
-			<!--<?php if ( is_object_in_taxonomy( get_post_type(), 'category' ) ) : // Hide category text when not supported ?>-->
-			<!--<?php-->
-				<!--/* translators: used between list items, there is a space after the comma */-->
-				<!--$categories_list = get_the_category_list( __( ', ', 'twentyeleven' ) );-->
-				<!--if ( $categories_list ):-->
-			<!--?>-->
-			<span class="cat-links" th:if="true">
-				<!--<?php printf( __( '<span class="%1$s">Posted in</span> %2$s', 'twentyeleven' ), 'entry-utility-prep entry-utility-prep-cat-links', $categories_list );-->
-				<!--$show_sep = true; ?>-->
-			</span>
-			<!--<?php endif; // End if categories ?>-->
-			<!--<?php endif; // End if is_object_in_taxonomy( get_post_type(), 'category' ) ?>-->
-			<!--<?php if ( is_object_in_taxonomy( get_post_type(), 'post_tag' ) ) : // Hide tag text when not supported ?>-->
-			<!--<?php-->
-				<!--/* translators: used between list items, there is a space after the comma */-->
-				<!--$tags_list = get_the_tag_list( '', __( ', ', 'twentyeleven' ) );-->
-				<!--if ( $tags_list ):-->
-				<!--if ( $show_sep ) : ?>-->
-			<span class="sep" th:if="false">> | </span>
-				<!--<?php endif; // End if $show_sep ?>-->
-			<span class="tag-links" th:if="false">
-				<!--<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'twentyeleven' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list );-->
-				<!--$show_sep = true; ?>-->
-			</span>
-			<!--<?php endif; // End if $tags_list ?>-->
-			<!--<?php endif; // End if is_object_in_taxonomy( get_post_type(), 'post_tag' ) ?>-->
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://localhost/?cat=1" rel="category">Uncategorized</a>			</span>
 
-			<!--<?php if ( comments_open() ) : ?>-->
-			<!--<?php if ( $show_sep ) : ?>-->
-			<span class="sep" th:if="false"> | </span>
-			<!--<?php endif; // End if $show_sep ?>-->
-			<span class="comments-link">
-				<!--<?php comments_popup_link( '<span class="leave-reply">' . __( 'Leave a reply', 'twentyeleven' ) . '</span>', __( '<b>1</b> Reply', 'twentyeleven' ), __( '<b>%</b> Replies', 'twentyeleven' ) ); ?>-->
-			</span>
-			<!--<?php endif; // End if comments_open() ?>-->
+			<span class="sep"> | </span>
+			<span class="comments-link" ><a href="http://localhost/?p=4#respond"><span class="leave-reply">Leave a reply</span></a></span>
 
-			<!--<?php edit_post_link( __( 'Edit', 'twentyeleven' ), '<span class="edit-link">', '</span>' ); ?>-->
-		</footer><!-- .entry-meta -->
-	</article><!-- #post-<?php the_ID(); ?> -->
+			<span class="edit-link"><a class="post-edit-link" href="http://localhost/wp-admin/post.php?post=4&amp;action=edit" th:if="false">Edit</a></span>		</footer><!-- .entry-meta -->
+	</article><!-- #post-4 -->
+
+</th:block>
 
 </body>
 </html>

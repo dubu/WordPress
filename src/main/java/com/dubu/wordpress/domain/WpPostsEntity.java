@@ -3,9 +3,7 @@ package com.dubu.wordpress.domain;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -14,12 +12,34 @@ import java.io.Serializable;
  * Time: 오후 5:10
  */
 @Entity
-@javax.persistence.Table(name = "wp_posts", schema = "wp", catalog = "")
+@Table(name = "wp_posts", schema = "wp", catalog = "")
 public class WpPostsEntity implements Serializable {
     private Long id;
+    private DateTime postDate;
+    private DateTime postDateGmt;
+    private String postContent;
+    private String postTitle;
+    private String postExcerpt;
+    private String postStatus;
+    private String commentStatus;
+    private String pingStatus;
+    private String postPassword;
+    private String postName;
+    private String toPing;
+    private String pinged;
+    private DateTime postModified;
+    private DateTime postModifiedGmt;
+    private String postContentFiltered;
+    private Long postParent;
+    private String guid;
+    private Integer menuOrder;
+    private String postType;
+    private String postMimeType;
+    private Long commentCount;
+    private Long postAuthor;
 
     @Id
-    @javax.persistence.Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     public Long getId() {
         return id;
     }
@@ -28,10 +48,8 @@ public class WpPostsEntity implements Serializable {
         this.id = id;
     }
 
-    private DateTime postDate;
-
     @Basic
-    @javax.persistence.Column(name = "post_date")
+    @Column(name = "post_date", nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime getPostDate() {
         return postDate;
@@ -41,10 +59,8 @@ public class WpPostsEntity implements Serializable {
         this.postDate = postDate;
     }
 
-    private DateTime postDateGmt;
-
     @Basic
-    @javax.persistence.Column(name = "post_date_gmt")
+    @Column(name = "post_date_gmt", nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime getPostDateGmt() {
         return postDateGmt;
@@ -54,10 +70,8 @@ public class WpPostsEntity implements Serializable {
         this.postDateGmt = postDateGmt;
     }
 
-    private String postContent;
-
     @Basic
-    @javax.persistence.Column(name = "post_content")
+    @Column(name = "post_content", nullable = false, length = -1)
     public String getPostContent() {
         return postContent;
     }
@@ -66,10 +80,8 @@ public class WpPostsEntity implements Serializable {
         this.postContent = postContent;
     }
 
-    private String postTitle;
-
     @Basic
-    @javax.persistence.Column(name = "post_title")
+    @Column(name = "post_title", nullable = false, length = -1)
     public String getPostTitle() {
         return postTitle;
     }
@@ -78,10 +90,8 @@ public class WpPostsEntity implements Serializable {
         this.postTitle = postTitle;
     }
 
-    private String postExcerpt;
-
     @Basic
-    @javax.persistence.Column(name = "post_excerpt")
+    @Column(name = "post_excerpt", nullable = false, length = -1)
     public String getPostExcerpt() {
         return postExcerpt;
     }
@@ -90,10 +100,8 @@ public class WpPostsEntity implements Serializable {
         this.postExcerpt = postExcerpt;
     }
 
-    private String postStatus;
-
     @Basic
-    @javax.persistence.Column(name = "post_status")
+    @Column(name = "post_status", nullable = false, length = 20)
     public String getPostStatus() {
         return postStatus;
     }
@@ -102,10 +110,8 @@ public class WpPostsEntity implements Serializable {
         this.postStatus = postStatus;
     }
 
-    private String commentStatus;
-
     @Basic
-    @javax.persistence.Column(name = "comment_status")
+    @Column(name = "comment_status", nullable = false, length = 20)
     public String getCommentStatus() {
         return commentStatus;
     }
@@ -114,10 +120,8 @@ public class WpPostsEntity implements Serializable {
         this.commentStatus = commentStatus;
     }
 
-    private String pingStatus;
-
     @Basic
-    @javax.persistence.Column(name = "ping_status")
+    @Column(name = "ping_status", nullable = false, length = 20)
     public String getPingStatus() {
         return pingStatus;
     }
@@ -126,10 +130,8 @@ public class WpPostsEntity implements Serializable {
         this.pingStatus = pingStatus;
     }
 
-    private String postPassword;
-
     @Basic
-    @javax.persistence.Column(name = "post_password")
+    @Column(name = "post_password", nullable = false, length = 20)
     public String getPostPassword() {
         return postPassword;
     }
@@ -138,10 +140,8 @@ public class WpPostsEntity implements Serializable {
         this.postPassword = postPassword;
     }
 
-    private String postName;
-
     @Basic
-    @javax.persistence.Column(name = "post_name")
+    @Column(name = "post_name", nullable = false, length = 200)
     public String getPostName() {
         return postName;
     }
@@ -150,10 +150,8 @@ public class WpPostsEntity implements Serializable {
         this.postName = postName;
     }
 
-    private String toPing;
-
     @Basic
-    @javax.persistence.Column(name = "to_ping")
+    @Column(name = "to_ping", nullable = false, length = -1)
     public String getToPing() {
         return toPing;
     }
@@ -162,10 +160,8 @@ public class WpPostsEntity implements Serializable {
         this.toPing = toPing;
     }
 
-    private String pinged;
-
     @Basic
-    @javax.persistence.Column(name = "pinged", columnDefinition = "text")
+    @Column(name = "pinged", columnDefinition = "text", nullable = false, length = -1)
     public String getPinged() {
         return pinged;
     }
@@ -174,10 +170,8 @@ public class WpPostsEntity implements Serializable {
         this.pinged = pinged;
     }
 
-    private DateTime postModified;
-
     @Basic
-    @javax.persistence.Column(name = "post_modified")
+    @Column(name = "post_modified", nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime getPostModified() {
         return postModified;
@@ -187,10 +181,8 @@ public class WpPostsEntity implements Serializable {
         this.postModified = postModified;
     }
 
-    private DateTime postModifiedGmt;
-
     @Basic
-    @javax.persistence.Column(name = "post_modified_gmt")
+    @Column(name = "post_modified_gmt", nullable = false)
     @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
     public DateTime getPostModifiedGmt() {
         return postModifiedGmt;
@@ -200,10 +192,8 @@ public class WpPostsEntity implements Serializable {
         this.postModifiedGmt = postModifiedGmt;
     }
 
-    private String postContentFiltered;
-
     @Basic
-    @javax.persistence.Column(name = "post_content_filtered")
+    @Column(name = "post_content_filtered", nullable = false, length = -1)
     public String getPostContentFiltered() {
         return postContentFiltered;
     }
@@ -212,10 +202,8 @@ public class WpPostsEntity implements Serializable {
         this.postContentFiltered = postContentFiltered;
     }
 
-    private Long postParent;
-
     @Basic
-    @javax.persistence.Column(name = "post_parent")
+    @Column(name = "post_parent", nullable = false)
     public Long getPostParent() {
         return postParent;
     }
@@ -224,10 +212,8 @@ public class WpPostsEntity implements Serializable {
         this.postParent = postParent;
     }
 
-    private String guid;
-
     @Basic
-    @javax.persistence.Column(name = "guid")
+    @Column(name = "guid", nullable = false, length = 255)
     public String getGuid() {
         return guid;
     }
@@ -236,10 +222,8 @@ public class WpPostsEntity implements Serializable {
         this.guid = guid;
     }
 
-    private Integer menuOrder;
-
     @Basic
-    @javax.persistence.Column(name = "menu_order")
+    @Column(name = "menu_order", nullable = false)
     public Integer getMenuOrder() {
         return menuOrder;
     }
@@ -248,10 +232,8 @@ public class WpPostsEntity implements Serializable {
         this.menuOrder = menuOrder;
     }
 
-    private String postType;
-
     @Basic
-    @javax.persistence.Column(name = "post_type")
+    @Column(name = "post_type", nullable = false, length = 20)
     public String getPostType() {
         return postType;
     }
@@ -260,10 +242,8 @@ public class WpPostsEntity implements Serializable {
         this.postType = postType;
     }
 
-    private String postMimeType;
-
     @Basic
-    @javax.persistence.Column(name = "post_mime_type")
+    @Column(name = "post_mime_type", nullable = false, length = 100)
     public String getPostMimeType() {
         return postMimeType;
     }
@@ -272,10 +252,8 @@ public class WpPostsEntity implements Serializable {
         this.postMimeType = postMimeType;
     }
 
-    private Long commentCount;
-
     @Basic
-    @javax.persistence.Column(name = "comment_count")
+    @Column(name = "comment_count", nullable = false)
     public Long getCommentCount() {
         return commentCount;
     }
@@ -345,5 +323,15 @@ public class WpPostsEntity implements Serializable {
         result = 31 * result + (postMimeType != null ? postMimeType.hashCode() : 0);
         result = 31 * result + (commentCount != null ? commentCount.hashCode() : 0);
         return result;
+    }
+
+    @Basic
+    @Column(name = "post_author", nullable = false)
+    public Long getPostAuthor() {
+        return postAuthor;
+    }
+
+    public void setPostAuthor(Long postAuthor) {
+        this.postAuthor = postAuthor;
     }
 }
