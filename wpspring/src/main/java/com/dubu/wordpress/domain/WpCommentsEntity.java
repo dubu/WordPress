@@ -3,9 +3,7 @@ package com.dubu.wordpress.domain;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -20,6 +18,7 @@ public class WpCommentsEntity implements Serializable {
 
     @Id
     @javax.persistence.Column(name = "comment_ID", nullable = false)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Long getCommentId() {
         return commentId;
     }
@@ -76,7 +75,7 @@ public class WpCommentsEntity implements Serializable {
         this.commentAuthorUrl = commentAuthorUrl;
     }
 
-    private String commentAuthorIp;
+    private String commentAuthorIp = "";
 
     @Basic
     @javax.persistence.Column(name = "comment_author_IP", nullable = false, length = 100)
@@ -88,7 +87,7 @@ public class WpCommentsEntity implements Serializable {
         this.commentAuthorIp = commentAuthorIp;
     }
 
-    private DateTime commentDate;
+    private DateTime commentDate  = new DateTime();
 
     @Basic
     @javax.persistence.Column(name = "comment_date", nullable = false)
@@ -101,7 +100,7 @@ public class WpCommentsEntity implements Serializable {
         this.commentDate = commentDate;
     }
 
-    private DateTime commentDateGmt;
+    private DateTime commentDateGmt = new DateTime();
 
     @Basic
     @javax.persistence.Column(name = "comment_date_gmt", nullable = false)
@@ -126,7 +125,7 @@ public class WpCommentsEntity implements Serializable {
         this.commentContent = commentContent;
     }
 
-    private Integer commentKarma;
+    private Integer commentKarma = 0;
 
     @Basic
     @javax.persistence.Column(name = "comment_karma", nullable = false)
@@ -138,7 +137,7 @@ public class WpCommentsEntity implements Serializable {
         this.commentKarma = commentKarma;
     }
 
-    private String commentApproved;
+    private String commentApproved = "1";
 
     @Basic
     @javax.persistence.Column(name = "comment_approved", nullable = false, length = 20)
@@ -150,7 +149,8 @@ public class WpCommentsEntity implements Serializable {
         this.commentApproved = commentApproved;
     }
 
-    private String commentAgent;
+    @JoinColumn(name="comment_agent", nullable = false)
+    private String commentAgent = "";
 
     @Basic
     @javax.persistence.Column(name = "comment_agent", nullable = false, length = 255)
@@ -162,7 +162,7 @@ public class WpCommentsEntity implements Serializable {
         this.commentAgent = commentAgent;
     }
 
-    private String commentType;
+    private String commentType = "";
 
     @Basic
     @javax.persistence.Column(name = "comment_type", nullable = false, length = 20)
@@ -174,7 +174,7 @@ public class WpCommentsEntity implements Serializable {
         this.commentType = commentType;
     }
 
-    private Long commentParent;
+    private Long commentParent = 0L;
 
     @Basic
     @javax.persistence.Column(name = "comment_parent", nullable = false)
@@ -186,7 +186,7 @@ public class WpCommentsEntity implements Serializable {
         this.commentParent = commentParent;
     }
 
-    private Long userId;
+    private Long userId = 0L;
 
     @Basic
     @javax.persistence.Column(name = "user_id", nullable = false)
