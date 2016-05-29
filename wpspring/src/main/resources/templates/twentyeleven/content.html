@@ -25,7 +25,7 @@
 		</header><!-- .entry-header -->
 
 		<div class="entry-content">
-			<p th:text="${post.getPostContent()}">...</p>
+			<p th:utext="${#strings.replace( #strings.escapeXml( post.getPostContent() ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}" ></p>
 		</div><!-- .entry-content -->
 
 		<footer class="entry-meta">
