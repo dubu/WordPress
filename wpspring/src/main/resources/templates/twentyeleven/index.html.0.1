@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<![endif]-->
+<!--[if !(IE 6) & !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+<header th:replace="twentyeleven/header :: header">
+    header
+</header>
+
+<body class="single single-post postid-12 single-format-image single-author singular two-column right-sidebar" ng-app="app" ng-controller="home as home">
+<div id="page" class="hfeed">
+
+    <header th:replace="twentyeleven/header-brand :: branding">
+        header
+    </header>
+
+    <div id="main">
+
+        <div id="primary">
+            <div id="content" role="main">
+
+                <!--<?php twentyeleven_content_nav( 'nav-above' ); ?>-->
+                <article th:replace="twentyeleven/content :: content">
+                </article>
+                <!--<?php twentyeleven_content_nav( 'nav-below' ); ?>-->
+
+                <article id="post-0" class="post no-results not-found" th:unless="${posts}">
+                    <header class="entry-header">
+                        <h1 class="entry-title" th:text="'Nothing Found'">
+                        </h1>
+                    </header>
+
+                    <div class="entry-content"
+                         th:text="'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.'">
+
+                        <!--<?php get_search_form(); ?>-->
+
+
+                    </div>
+                </article>
+
+            </div><!-- #content -->
+        </div><!-- #primary -->
+
+        <!--<?php get_sidebar(); ?>-->
+
+        <div th:replace="twentyeleven/sidebar :: sidebar">
+            footer
+        </div>
+
+
+    </div><!-- #main -->
+
+    <!--<?php get_footer(); ?>-->
+
+    <footer th:replace="twentyeleven/footer :: colophon">
+        footer
+    </footer>
+</div><!-- #page -->
+
+<script type='text/javascript' src='/wp-includes/js/comment-reply.min.js?ver=4.6-alpha-37416'></script>
+<script type='text/javascript' src='/wp-includes/js/wp-embed.min.js?ver=4.6-alpha-37416'></script>
+
+</body>
+</html>

@@ -32,7 +32,7 @@ get_header(); ?>
 
 			<?php else : ?>
 
-				<article id="post-0" class="post no-results not-found">
+					<article id="post-0" class="post no-results not-found">
 					<header class="entry-header">
 						<h1 class="entry-title"><?php _e( 'Nothing Found', 'twentyeleven' ); ?></h1>
 					</header><!-- .entry-header -->
@@ -46,7 +46,7 @@ get_header(); ?>
 			<?php endif; ?>
 
 			</div><!-- #content -->
-		</div><!-- #primary -->
+			</div><!-- #primary -->
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

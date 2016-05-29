@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <!--[if IE 6]>
-<html id="ie6" lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<html id="ie6" lang="en-US">
 <![endif]-->
 <!--[if IE 7]>
-<html id="ie7" lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<html id="ie7" lang="en-US">
 <![endif]-->
 <!--[if IE 8]>
-<html id="ie8" lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<html id="ie8" lang="en-US">
 <![endif]-->
 <!--[if !(IE 6) & !(IE 7) & !(IE 8)]><!-->
-<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<html lang="en-US" xmlns:th="http://www.springframework.org/schema/security">
 <!--<![endif]-->
 <header th:replace="twentyeleven/header :: header">
     header
 </header>
 
-<body class="single single-post postid-12 single-format-image single-author singular two-column right-sidebar" ng-app="app" ng-controller="home as home">
+<body class="home blog single-author two-column right-sidebar">
 <div id="page" class="hfeed">
 
     <header th:replace="twentyeleven/header-brand :: branding">
@@ -27,86 +27,52 @@
         <div id="primary">
             <div id="content" role="main">
 
-                <!--<?php twentyeleven_content_nav( 'nav-above' ); ?>-->
+
                 <article th:replace="twentyeleven/content :: content">
                 </article>
-                <!--<?php twentyeleven_content_nav( 'nav-below' ); ?>-->
 
-                <article id="post-0" class="post no-results not-found" th:unless="${posts}">
+                <article id="post-1" class="post-1 post type-post status-publish format-standard hentry category-uncategorized">
                     <header class="entry-header">
-                        <h1 class="entry-title" th:text="'Nothing Found'">
-                        </h1>
-                    </header>
+                        <h1 class="entry-title"><a href="http://blog.kozazz.com/?p=1" rel="bookmark">Hello world!</a></h1>
 
-                    <div class="entry-content"
-                         th:text="'Apologies, but no results were found for the requested archive. Perhaps searching will help find a related post.'">
+                        <div class="entry-meta">
+                            <span class="sep">Posted on </span><a href="http://blog.kozazz.com/?p=1" title="5:03 pm" rel="bookmark"><time class="entry-date" datetime="2016-05-16T17:03:26+00:00">May 16, 2016</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://blog.kozazz.com/?author=1" title="View all posts by dubu" rel="author">dubu</a></span></span>			</div><!-- .entry-meta -->
 
-                        <!--<?php get_search_form(); ?>-->
+                        <div class="comments-link">
+                            <a href="http://blog.kozazz.com/?p=1#comments">1</a>			</div>
+                    </header><!-- .entry-header -->
 
+                    <div class="entry-content">
+                        <p>Welcome to WordPress. This is your first post. Edit or delete it, then start writing!</p>
+                    </div><!-- .entry-content -->
 
-                    </div>
-                </article>
+                    <footer class="entry-meta">
+												<span class="cat-links">
+				<span class="entry-utility-prep entry-utility-prep-cat-links">Posted in</span> <a href="http://blog.kozazz.com/?cat=1" rel="category">Uncategorized</a>			</span>
+
+                        <span class="sep"> | </span>
+                        <span class="comments-link"><a href="http://blog.kozazz.com/?p=1#comments"><b>1</b> Reply</a></span>
+
+                    </footer><!-- .entry-meta -->
+                </article><!-- #post-1 -->
 
             </div><!-- #content -->
         </div><!-- #primary -->
 
-        <!--<?php get_sidebar(); ?>-->
-        <!--<?php get_footer(); ?>-->
+
+        <div th:replace="twentyeleven/sidebar :: sidebar">
+            footer
+        </div>
 
     </div><!-- #main -->
 
     <footer th:replace="twentyeleven/footer :: colophon">
         footer
     </footer>
+
 </div><!-- #page -->
 
-<script type='text/javascript' src='/wp-includes/js/comment-reply.min.js?ver=4.6-alpha-37416'></script>
-<script type='text/javascript' src='/wp-includes/js/wp-embed.min.js?ver=4.6-alpha-37416'></script>
+<script type='text/javascript' src='http://blog.kozazz.com/wp-includes/js/wp-embed.min.js?ver=4.6-alpha-37531'></script>
 
-<script type="text/javascript" src="/webjars/angularjs/angular.min.js"></script>
-<script type="text/javascript">
-    angular
-            .module("app", [])
-            .config(
-                    function($httpProvider) {
-                        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-                    }).controller("home", function($scope, $http, $location) {
-        var self = this;
-//         $scope.posts = [
-//            {'postContent': 'Nexus S',
-//                'snippet': 'Fast just got faster with Nexus S.',
-//                'age': 1},
-//            {'postContent': 'Motorola XOOM™ with Wi-Fi',
-//                'snippet': 'The Next, Next Generation tablet.',
-//                'age': 2},
-//            {'postContent': 'MOTOROLA XOOM™',
-//                'snippet': 'The Next, Next Generation tablet.',
-//                'age': 3}
-//        ];
-
-        $http.get("/api/wpPostsEntities/search/findByPostType?post_type=post").success(function(data) {
-
-            if (data) {
-//                $scope.posts = data._embedded.wpPostsEntities;
-                self.authenticated = true;
-            } else {
-                self.user = "N/A";
-                self.authenticated = false;
-            }
-        }).error(function() {
-            self.user = "N/A";
-            self.authenticated = false;
-        });
-        self.logout = function() {
-            $http.post('logout', {}).success(function() {
-                self.authenticated = false;
-                $location.path("/");
-            }).error(function(data) {
-                console.log("Logout failed")
-                self.authenticated = false;
-            });
-        };
-    });
-</script>
 </body>
 </html>

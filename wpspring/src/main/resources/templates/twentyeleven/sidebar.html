@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div id="secondary" class="widget-area" role="complementary"  th:fragment="sidebar">
+    <aside id="search-2" class="widget widget_search">	<form method="get" id="searchform" action="http://blog.kozazz.com/">
+        <label for="s" class="assistive-text">Search</label>
+        <input type="text" class="field" name="s" id="s" placeholder="Search" />
+        <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+    </form>
+    </aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Recent Posts</h3>		<ul>
+    <li>
+        <a href="http://blog.kozazz.com/?p=23">긴글</a>
+    </li>
+    <li>
+        <a href="http://blog.kozazz.com/?p=20">소개 이곳은 워드프레스인가?</a>
+    </li>
+    <li>
+        <a href="http://blog.kozazz.com/?p=18">자바</a>
+    </li>
+    <li>
+        <a href="http://blog.kozazz.com/?p=15">블로그</a>
+    </li>
+    <li>
+        <a href="http://blog.kozazz.com/?p=6">글 종이와 연필</a>
+    </li>
+</ul>
+</aside>		<aside id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href='https://wordpress.org/' rel='external nofollow' class='url'>Mr WordPress</a></span> on <a href="http://blog.kozazz.com/?p=1#comment-1">Hello world!</a></li></ul></aside><aside id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3>		<ul>
+    <li><a href='http://blog.kozazz.com/?m=201605'>May 2016</a></li>
+</ul>
+</aside><aside id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3>		<ul>
+    <li class="cat-item cat-item-1"><a href="http://blog.kozazz.com/?cat=1" >Uncategorized</a>
+    </li>
+</ul>
+</aside><aside id="meta-2" class="widget widget_meta"><h3 class="widget-title">Meta</h3>			<ul>
+    <li><a href="http://blog.kozazz.com/wp-login.php">Log in</a></li>
+    <li><a href="http://blog.kozazz.com/?feed=rss2">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+    <li><a href="http://blog.kozazz.com/?feed=comments-rss2">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+    <li><a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>			</ul>
+</aside>		</div><!-- #secondary .widget-area -->
+
+
+</body>
+</html>
