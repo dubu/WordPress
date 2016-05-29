@@ -1,0 +1,25 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<th:block th:fragment="content-single">
+<article id="post-23" class="post-23 post type-post status-publish format-standard hentry category-uncategorized" >
+    <header class="entry-header">
+        <h1 class="entry-title" th:text="${post.postTitle}"></h1>
+
+        <div class="entry-meta">
+            <span class="sep">Posted on </span><a href="http://localhost/?p=23" title="2:49 pm" rel="bookmark"><time class="entry-date" datetime="2016-05-24T14:49:50+00:00">May 24, 2016</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author vcard"><a class="url fn n" href="http://localhost/?author=1" title="View all posts by dubu" rel="author">dubu</a></span></span>		</div><!-- .entry-meta -->
+    </header><!-- .entry-header -->
+
+    <div class="entry-content" th:utext="${#strings.replace( #strings.escapeXml( post.getPostContent() ),T(java.lang.System).getProperty('line.separator'),'&lt;br /&gt;')}">>
+        ...
+    </div><!-- .entry-content -->
+
+    <footer class="entry-meta">
+        This entry was posted in <a href="http://localhost/?cat=1" rel="category">Uncategorized</a> by <a href="http://localhost/?author=1">dubu</a>. Bookmark the <a href="http://localhost/?p=23" title="Permalink to 긴글" rel="bookmark">permalink</a>.
+    </footer><!-- .entry-meta -->
+</article><!-- #post -->
+
+</th:block>
+
+</body>
+</html>

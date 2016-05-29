@@ -38,13 +38,16 @@ public class DefaultController {
     }
 
     @RequestMapping("/")
-    public String home(Map<String, Object> model, @RequestParam(required = false) Long p) {
+    public String home(Map<String, Object> model, @RequestParam(required = false ,name = "p") Long postId) {
 
-        if (p != null) {
-            final WpPostsEntity one = postRepository.findOne(p);
+        if (postId != null) {
+            final WpPostsEntity one = postRepository.findOne(postId);
             model.put("post", one);
+            model.put("comments", commentsRepository.findByCommentPostId(postId));
             return "/twentyeleven/single";
         }
+
+
         model.put("nickname", "dubuAA");
         model.put("posts", postRepository.findByPostStatusAndPostTypeOrderByIdDesc("publish", "post"));
         return "/twentyeleven/index";
@@ -77,9 +80,9 @@ public class DefaultController {
 //        wpCommentsEntity.setCommentType("");
 //        wpCommentsEntity.setUserId(0L);
 //        wpCommentsEntity.setCommentApproved("1");
-
         commentsRepository.save(wpCommentsEntity);
+
 //        return new RedirectView("/asdfad");
-        return "redirct:/";
+        return "redirect:/?p=" +map.get("comment_post_ID") ;
     }
 }

@@ -4,6 +4,9 @@ import com.dubu.wordpress.domain.WpCommentsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 /**
  * User: kingkingdubu
@@ -12,5 +15,5 @@ import org.springframework.data.repository.Repository;
  */
 public interface CommentsRepository extends Repository<WpCommentsEntity, Long>, JpaRepository<WpCommentsEntity, Long>,JpaSpecificationExecutor<WpCommentsEntity> {
 
-
+    List<WpCommentsEntity> findByCommentPostId(@Param("commentPostId") Long commentPostId);
 }
