@@ -4,6 +4,7 @@ import com.dubu.wordpress.domain.WpOptionsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
 
 /**
  * User: kingkingdubu
@@ -13,4 +14,5 @@ import org.springframework.data.repository.Repository;
 public interface OptionsRepository extends Repository<WpOptionsEntity, Long>, JpaRepository<WpOptionsEntity, Long>,JpaSpecificationExecutor<WpOptionsEntity> {
 
 
+    WpOptionsEntity findByOptionName(@Param("optionName") String optionName);
 }

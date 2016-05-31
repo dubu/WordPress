@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface CommentsRepository extends Repository<WpCommentsEntity, Long>, JpaRepository<WpCommentsEntity, Long>,JpaSpecificationExecutor<WpCommentsEntity> {
 
-    List<WpCommentsEntity> findByCommentPostId(@Param("commentPostId") Long commentPostId);
+    List<WpCommentsEntity> findByCommentPostIdAndCommentApproved(@Param("commentPostId") Long commentPostId, @Param("commentApproved")String commentApproved);
 }
