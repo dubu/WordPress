@@ -31,7 +31,7 @@ public class DefaultController {
     OptionsRepository optionsRepository;
 
     @Autowired
-    public DefaultController(PostRepository postRepository, CommentsRepository commentsRepository ,OptionsRepository optionsRepository) {
+    public DefaultController(PostRepository postRepository, CommentsRepository commentsRepository, OptionsRepository optionsRepository) {
         this.postRepository = postRepository;
         this.commentsRepository = commentsRepository;
         this.optionsRepository = optionsRepository;
@@ -43,30 +43,43 @@ public class DefaultController {
     }
 
     @RequestMapping("/")
-    public String home(Map<String, Object> model, @RequestParam(required = false ,name = "p") Long postId) {
+//    public String home(Map<String, Object> model, @RequestParam(required = false ,name = "p") Long postId) {
+    public String home(Map<String, Object> model, @RequestParam Map params) {
 
-
+        //config
         WpOptionsEntity optionsEntity = optionsRepository.findByOptionName("template");
         String theme = optionsEntity.getOptionValue();
-        //전체
-        if (postId != null) {
+
+        Long postId = (Long) params.get("p");
+        String searchParam = (String) params.get("s");
+
+        if (searchParam != null) {
+            //model.put("posts", postRepository.findByPostStatusAndPostTypeOrderByIdDesc("publish", "post"));
+            model.put("posts", postRepository.findSearch(searchParam));
+            return "/" + theme + "/search";
+
+        } else if (postId != null) {
+
             final WpPostsEntity one = postRepository.findOne(postId);
             model.put("post", one);
-            model.put("comments", commentsRepository.findByCommentPostIdAndCommentApproved(postId,"1"));
-            return "/"+theme+"/single";
+            model.put("comments", commentsRepository.findByCommentPostIdAndCommentApproved(postId, "1"));
+            return "/" + theme + "/single";
+
+        } else {
+            //전체
+
+            //
+            model.put("posts", postRepository.findByPostStatusAndPostTypeOrderByIdDesc("publish", "post"));
+            return "/" + theme + "/index";
+
         }
 
 
-        //상세
-        model.put("nickname", "dubuAA");
-        model.put("posts", postRepository.findByPostStatusAndPostTypeOrderByIdDesc("publish", "post"));
-        return "/"+theme+"/index";
-
     }
 
-    @RequestMapping(value = "/wp-comments-post",method = RequestMethod.POST)
-    public String wpCommentsPost( @RequestParam Map<String,String> map
-           ) {
+    @RequestMapping(value = "/wp-comments-post", method = RequestMethod.POST)
+    public String wpCommentsPost(@RequestParam Map<String, String> map
+    ) {
 
 
 //        0 = {java.util.LinkedHashMap$Entry@9390} "comment" -> "df"
@@ -76,7 +89,6 @@ public class DefaultController {
 //        4 = {java.util.LinkedHashMap$Entry@9394} "submit" -> "Post Comment"
 //        5 = {java.util.LinkedHashMap$Entry@9395} "comment_post_ID" -> "23"
 //        6 = {java.util.LinkedHashMap$Entry@9396} "comment_parent" -> "0"
-
 
 
         WpCommentsEntity wpCommentsEntity = new WpCommentsEntity();
@@ -93,6 +105,6 @@ public class DefaultController {
         commentsRepository.save(wpCommentsEntity);
 
 //        return new RedirectView("/asdfad");
-        return "redirect:/?p=" +map.get("comment_post_ID") ;
+        return "redirect:/?p=" + map.get("comment_post_ID");
     }
 }

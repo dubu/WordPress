@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="en-US">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="en-US">
+<![endif]-->
+<!--[if !(IE 6) & !(IE 7) & !(IE 8)]><!-->
+<html lang="en-US" xmlns:th="http://www.springframework.org/schema/security">
+<!--<![endif]-->
+<header th:replace="twentyeleven/header :: header">
+    header
+</header>
+
+<body class="home blog single-author two-column right-sidebar">
+<div id="page" class="hfeed">
+
+    <header th:replace="twentyeleven/header-brand :: branding">
+        header
+    </header>
+
+    <div id="main">
+
+        <section id="primary">
+            <div id="content" role="main">
+
+                <!--여기부터-->
+                <header class="page-header">
+                    <h1 class="page-title">Search Results for: <span th:text="${param.s[0]}"  th:unless="${param.s == null}"> ...</span></h1>
+                </header>
+
+                <article th:replace="twentyeleven/content :: content">
+                </article>
+
+                    <article id="post-0" class="post no-results not-found"  th:unless="${posts}">
+                        <header class="entry-header">
+                            <h1 class="entry-title">Nothing Found</h1>
+                        </header><!-- .entry-header -->
+
+                        <div class="entry-content">
+                            <p>Sorry, but nothing matched your search criteria. Please try again with some different keywords.</p>
+                            <form method="get" id="searchform" action="http://localhost/">
+                                <label for="s" class="assistive-text">Search</label>
+                                <input type="text" class="field" name="s" id="s" placeholder="Search" />
+                                <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search" />
+                            </form>
+                        </div><!-- .entry-content -->
+                    </article><!-- #post-0 -->
+
+
+
+
+
+                <!--여기까기 -->
+
+
+            </div><!-- #content -->
+        </section><!-- #primary -->
+
+
+        <div th:replace="twentyeleven/sidebar :: sidebar">
+            footer
+        </div>
+
+    </div><!-- #main -->
+
+    <footer th:replace="twentyeleven/footer :: colophon">
+        footer
+    </footer>
+
+</div><!-- #page -->
+
+<script type='text/javascript' src='http://blog.kozazz.com/wp-includes/js/wp-embed.min.js?ver=4.6-alpha-37531'></script>
+
+</body>
+</html>
